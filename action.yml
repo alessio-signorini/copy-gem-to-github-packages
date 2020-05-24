@@ -1,0 +1,16 @@
+name: 'Copy Gem to Github Packages'
+author: 'Alessio Signorini <alessio@signorini.us>'
+description: "Copy a Gem from any repository into your Organization's Github packages"
+branding:
+  icon: 'copy'
+inputs:
+  gem_name:
+    description: 'Name of the gem to copy'
+    required: true
+  gem_repository:
+    description: 'The repository containing the gem (include auth if needed)'
+    required: false
+    default: 'https://rubygems.org'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

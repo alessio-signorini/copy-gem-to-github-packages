@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  test_simple_workflow:
+    runs-on: ubuntu-latest
+    name: Testing the Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Copy Gem To Github Packages Action Step
+        uses: ./
+        env:
+          GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+        with:
+          gem_name: 'httparty'
