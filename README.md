@@ -39,12 +39,19 @@ with:
 ```
 
 ## Advanced usage
-This action will run every day at midnight and will copy the `sidekiq-ent`
-package from the private/protected repository into your organization.
-The basic auth credentials used to access the private repository are saved
-as secrets.
+This action will run every day at midnight and will copy the `sidekiq-pro`
+and `sidekiq-ent` gems from Sidekiq's protected repository into
+your organization's package repository.
+The basic auth credentials used to access the private repository are
+saved as secrets.
 ```yaml
+name: 'Refresh Packages'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
+  push:
   schedule:
     - cron:  '0 0 * * *'    # Run every day at midnight
 
@@ -53,10 +60,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Refresh Packages
     steps:
+      - name: sidekiq-pro
+        uses: alessio-signorini/copy-gem-to-github-packages@v2
+        with:
+          gem_name: 'sidekiq-pro'
+          gem_repository: 'https://${{ secrets.SIDEKIQ_AUTH }}@enterprise.contribsys.com'
       - name: sidekiq-ent
         uses: alessio-signorini/copy-gem-to-github-packages@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           gem_name: 'sidekiq-ent'
           gem_repository: 'https://${{ secrets.SIDEKIQ_AUTH }}@enterprise.contribsys.com'
