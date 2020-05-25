@@ -7,5 +7,6 @@ COPY entrypoint.sh /entrypoint.sh
 COPY fetch.sh /fetch.sh
 COPY repack.sh /repack.sh
 COPY push.sh /push.sh
+COPY cleanup.sh /cleanup.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

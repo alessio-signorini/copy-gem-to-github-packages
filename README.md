@@ -31,7 +31,7 @@ This is the minimum code necessary for a single `step` to copy the
 `httparty` gem from the standard RubyGems repository into Github packages
 associated to the current git repository in your organization.
 ```yaml
-uses: alessio-signorini/copy-gem-to-github-packages@v1
+uses: alessio-signorini/copy-gem-to-github-packages@v2
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 with:
@@ -54,7 +54,7 @@ jobs:
     name: Refresh Packages
     steps:
       - name: sidekiq-ent
-        uses: alessio-signorini/copy-gem-to-github-packages@v1
+        uses: alessio-signorini/copy-gem-to-github-packages@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
