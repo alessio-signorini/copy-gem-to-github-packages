@@ -1,1 +1,1 @@
-gem fetch $INPUT_GEM_NAME -s $INPUT_GEM_REPOSITORY && ls *.gem >/dev/null
+gem fetch $INPUT_GEM_NAME --clear-sources -s $INPUT_GEM_REPOSITORY && ls *.gem >/dev/null
